@@ -10,7 +10,8 @@ Implemented as S3 methods. Works with derivatives of any order.
 Use ``deriv`` for reading/writing to derivative. Can be nested.
 
 Current functions/operators overloaded:
-`+`, `-`, `*`, `/`, `%*%`, `t`, `log`, `exp`, `print`, subsetting (only read). 
+`+`, `-`, `*`, `/`, `%*%`, `t`, `sqrt`, `log`, `exp`, `sin`, `cos`, `sum`, `rep`, `print`, 
+subsetting (only read) `[`. 
 
 ### Example
 Try calculate the numerical derivatives for comparison
@@ -54,7 +55,6 @@ Derivative:
 ## Here n is treated as a constant, and w depends on an independent variable.
 > m <- matrix(1:16, 4, 4)
 > n <- t(m) %*% m
-## m is treated as a constant
 > w <- 1:4
 > deriv(w) <- c(0, 1, -1, 0)
 
