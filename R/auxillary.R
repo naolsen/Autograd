@@ -1,10 +1,15 @@
 
+## NB: derivative layout must match ddim up to highest order!
 prune.autograd <- function(x) {
   if (!is.null(attr(x, 'deriv'))) {
-    attr(x, 'deriv') <- prune.autograd(attr(x, 'deriv'))
-    if (is.null(attr(x, 'deriv'))) {
+    if (is.list(attr(x, 'deriv'))) {
+      for (i in length(attr(x, 'deriv')):1)
+        attr(x, 'deriv')[[i]] <- prune.autograd(attr(x, 'deriv')[[i]])
+    }
+    else attr(x, 'deriv') <- prune.autograd(attr(x, 'deriv'))
+    if (is.null(attr(x, 'deriv')) || length(attr(x, 'deriv')) == 0) {
       x <- unclass(x)
-      attr(x, 'ddim') <- NULL
+      attr(x, 'ddim') <- attr(x, 'deriv') <- NULL
     }
   }
   else x <- NULL

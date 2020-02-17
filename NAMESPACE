@@ -2,6 +2,7 @@
 
 export("deriv<-")
 export("deriv")
+export("hessian")
 export("+.autograd")
 export("-.autograd")
 export("*.autograd")

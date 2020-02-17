@@ -15,9 +15,7 @@ print.autog <- function(x) {
   ddim <- attr(x, 'ddim')
   attr(x, 'deriv') <- attr(x, 'ddim') <- NULL
 
-  #if (ddim > 1)
-    print(unclass(x))
-  #else print(unclass(x)[[1]])
+  print(unclass(x))
 
   cat("Derivative: ddim =", ddim, "\n")
   if (ddim > 1) for (i in 1:ddim) {

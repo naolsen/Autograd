@@ -41,6 +41,6 @@ hessian <- function(x, simplify = TRUE) {
     for (d in 1:ddim) {
       unlist(deriv(deriv(x, d)))
     }
-    drop(array(unlist(lapply(deriv(x), function(y) unlist(deriv(y)))),
+    drop(array(unlist (lapply(deriv(x), function(y) unlist(deriv(y)))),
     dim = c(xdim, ddim, ddim)))
 }

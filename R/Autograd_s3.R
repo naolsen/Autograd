@@ -33,8 +33,8 @@
 
 `*.autograd` <- function(e1, e2) {
 
-  e1 <- autograd.internal(e1)
-  e2 <- autograd.internal(e2)
+  e1 <- autograd.internal(e1, allow.list = TRUE)
+  e2 <- autograd.internal(e2, allow.list = TRUE)
 
   ed1 <- attr(e1,'deriv')
   ed2 <- attr(e2,'deriv')
@@ -43,14 +43,14 @@
   e2 <- prune.autograd(e2)
   x <- e1 * e2
 
-  deriv(x) <- ed1*e2 + ed2*e1
+  deriv(x) <- mapply(function(a,b) a*e2 + b*e1, ed1, ed2, SIMPLIFY = FALSE)
   x
 }
 
 `/.autograd` <- function(e1, e2) {
 
-  e1 <- autograd.internal(e1)
-  e2 <- autograd.internal(e2)
+  e1 <- autograd.internal(e1, allow.list = TRUE)
+  e2 <- autograd.internal(e2, allow.list = TRUE)
 
   ed1 <- attr(e1,'deriv')
   ed2 <- attr(e2,'deriv')
@@ -59,7 +59,7 @@
   e2 <- prune.autograd(e2)
 
   x <- e1 / e2
-  deriv(x) <- (ed1*e2 - ed2*e1) / (e2*e2)
+  deriv(x) <- mapply(function(a,b) (a*e2 - b*e1) / (e2*e2), ed1, ed2, SIMPLIFY = FALSE)
   x
 }
 
