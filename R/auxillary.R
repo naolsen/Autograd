@@ -35,12 +35,12 @@ autograd.internal <- function(x, allow.list = FALSE) {
 fun.to.autograd.deriv <- function(fun, fderiv) {
 
   f <- function(x) {
-    x <- autograd.internal(x)
+    x <- autograd.internal(x,  allow.list = TRUE)
     ed1 <- attr(x,'deriv')
     x <- prune.autograd(x)
 
     x2 <- fun(x)
-    deriv(x2) <- ed1*fderiv(x)
+    deriv(x2) <- lapply(ed1,  function(a) a * fderiv(x))
     x2
   }
   f
@@ -49,9 +49,9 @@ fun.to.autograd.deriv <- function(fun, fderiv) {
 ## Convert one argument functions to autograd using recursion
 rfun.to.autograd.deriv <- function(fun) {
   f <- function(x, ...) {
-    x <- autograd.internal(x)
+    x <- autograd.internal(x, allow.list = TRUE)
     x2 <- fun(unclass(x), ...)
-    deriv(x2) <- fun(deriv(x), ...)
+    deriv(x2) <- lapply(deriv(x), fun, ...)
     x2
   }
   f

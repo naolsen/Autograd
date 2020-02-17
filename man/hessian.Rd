@@ -5,7 +5,7 @@
 hessian(x)
 }
 \arguments{
-\item{x}{Autograd object for which all 2nd derivatives exist (as defined by \code{ddim} attribute)}
+\item{x}{Autograd object for which all 2nd derivatives exist (as defined by the \code{ddim} attribute)}
 }
 \value{
 Hessian of \code{x} wrapped up in an array of dim \code{c(dim(x), ddim, ddim)} with dimensions possibly dropped.

@@ -73,3 +73,5 @@ Derivative: ddim = 1
 [1,] -3360
 ```
 
+### Known issues
+`solve` does not work as intended on `solve(a, b)`. Use `solve(a) %*% b` instead.
