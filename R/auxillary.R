@@ -2,24 +2,33 @@
 prune.autograd <- function(x) {
   if (!is.null(attr(x, 'deriv'))) {
     attr(x, 'deriv') <- prune.autograd(attr(x, 'deriv'))
-    if (is.null(attr(x, 'deriv'))) x <- unclass(x)
+    if (is.null(attr(x, 'deriv'))) {
+      x <- unclass(x)
+      attr(x, 'ddim') <- NULL
+    }
   }
   else x <- NULL
   x
 }
 
 autograd.internal <- function(x) {
+
   if(!inherits(x, 'autograd')) {
     attr(x, 'deriv') <- x*0
     x
   }
-  else x
+  else {
+    if (attr(x, 'ddim') > 1) stop("Not implemented for this operator yet")
+    else attr(x, 'deriv') <- deriv(x)[[1]]
+    x
+  }
 }
 
 ## Convert one argument functions to autograd using chain rule
 fun.to.autograd.deriv <- function(fun, fderiv) {
 
   f <- function(x) {
+    x <- autograd.internal(x)
     ed1 <- attr(x,'deriv')
     x <- prune.autograd(x)
 
@@ -33,6 +42,7 @@ fun.to.autograd.deriv <- function(fun, fderiv) {
 ## Convert one argument functions to autograd using recursion
 rfun.to.autograd.deriv <- function(fun) {
   f <- function(x, ...) {
+    x <- autograd.internal(x)
     x2 <- fun(unclass(x), ...)
     deriv(x2) <- fun(deriv(x), ...)
     x2

@@ -10,7 +10,7 @@ Implemented as S3 methods. Works with derivatives of any order.
 Use ``deriv`` for reading/writing to derivative. Can be nested.
 
 Current functions/operators overloaded:
-`+`, `-`, `*`, `/`, `%*%`, `t`, `sqrt`, `log`, `exp`, `sin`, `cos`, `sum`, `rep`, `print`, 
+`+`, `-`, `*`, `/`, `%*%`, `t`, `sqrt`, `log`, `exp`, `sin`, `cos`, `sum`, `rep`, `solve`, `print`, 
 subsetting (only read) `[`. 
 
 ### Example
@@ -21,34 +21,41 @@ Try calculate the numerical derivatives for comparison
 > deriv(deriv(s)) <- 0
 > print(s)
 [1] 3
-Derivative:
+Derivative: ddim = 1 
 [1] 1
-Derivative:
+Derivative: ddim = 1 
 [1] 0
 
 ## Polynomial example
 > s*(s+2) - 3 ## Gives value and two derivatives of polynomial x*(x+2) - 3 in x = 3.
 [1] 12
-Derivative:
+Derivative: ddim = 1 
 [1] 8
-Derivative:
+Derivative: ddim = 1 
 [1] 2
 
 ## Exponential example
 > exp(s)
 [1] 20.08554
-Derivative:
+Derivative: ddim = 1 
 [1] 20.08554
-Derivative:
+Derivative: ddim = 1 
 [1] 20.08554
 
 ## Complicated example
 > s2 <- log(s + 3) -  s*s + 4*exp(s/2)
+> s2
+[1] 10.71852
+Derivative: ddim = 1 
+[1] 3.130045
+Derivative: ddim = 1 
+[1] 2.453911
+
 > s2 / s2 ## Constant expression, thus derivatives must zero.
 [1] 1
-Derivative:
+Derivative: ddim = 1 
 [1] 0
-Derivative:
+Derivative: ddim = 1 
 [1] 0
 
 ## Matrix example with quadratic form
@@ -61,7 +68,7 @@ Derivative:
 > t(w) %*% n %*% w
       [,1]
 [1,] 44600
-Derivative:
+Derivative: ddim = 1 
       [,1]
 [1,] -3360
 ```

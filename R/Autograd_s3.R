@@ -85,3 +85,13 @@
   deriv(z) <- ed1 %*% y + x %*% ed2
   z
 }
+
+solve.autograd <- function(a, b, ...) {
+  if (!missing(b)) solve(a, ...) %*% b
+  else {
+    x <- prune.autograd(a)
+    x2 <- solve(x, ...)
+    deriv(x2) <- x2 %*% deriv(a) %*% x2
+    x2
+  }
+}
