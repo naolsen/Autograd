@@ -6,7 +6,7 @@
 print(x)
 }
 \arguments{
-\item{x}{Object of class \code{autograd}
+\item{x}{Object of class \code{autograd}}
 }
 \description{
 Prints \code{x}, along with derivative.

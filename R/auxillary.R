@@ -11,17 +11,19 @@ prune.autograd <- function(x) {
   x
 }
 
-autograd.internal <- function(x) {
+autograd.internal <- function(x, allow.list = FALSE) {
 
   if(!inherits(x, 'autograd')) {
-    attr(x, 'deriv') <- x*0
+    if (allow.list) attr(x, 'deriv') <- list(x*0)
+    else attr(x, 'deriv') <- x*0
     x
   }
-  else {
+  else if (!allow.list) {
     if (attr(x, 'ddim') > 1) stop("Not implemented for this operator yet")
     else attr(x, 'deriv') <- deriv(x)[[1]]
     x
   }
+  else x
 }
 
 ## Convert one argument functions to autograd using chain rule

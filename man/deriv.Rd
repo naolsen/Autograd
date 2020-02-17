@@ -10,7 +10,7 @@ deriv(x) <- value
 \arguments{
 \item{x}{Element}
 
-\item{value} {Value of derivative. Dimensions must match those of \code{x}}
+\item{value}{Value of derivative. Dimensions must match those of \code{x}}
 
 }
 \value{

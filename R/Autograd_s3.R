@@ -8,23 +8,24 @@
   }
   x <- unclass(e1) + unclass(e2)
 
-  e1 <- autograd.internal(e1)
-  e2 <- autograd.internal(e2)
+  e1 <- autograd.internal(e1, allow.list = TRUE)
+  e2 <- autograd.internal(e2, allow.list = TRUE)
 
-  deriv(x) <- attr(e1, 'deriv') + attr(e2, 'deriv')
+  deriv(x) <- mapply('+', attr(e1, 'deriv'), attr(e2, 'deriv'), SIMPLIFY = FALSE)
   x
 }
 
 `-.autograd` <- function(e1, e2) {
   if (missing(e2)) {
     x <- - unclass(e1)
-    deriv(x) <- -attr(x,'deriv')
+    deriv(x) <- lapply(attr(x,'deriv'), '-')
   }
   else {
     x <- unclass(e1) - unclass(e2)
-    e1 <- autograd.internal(e1)
-    e2 <- autograd.internal(e2)
-    deriv(x) <- attr(e1, 'deriv') - attr(e2, 'deriv')
+    e1 <- autograd.internal(e1, allow.list = TRUE)
+    e2 <- autograd.internal(e2, allow.list = TRUE)
+
+    deriv(x) <- mapply('-', attr(e1, 'deriv'), attr(e2, 'deriv'), SIMPLIFY = FALSE)
   }
   x
 }
