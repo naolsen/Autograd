@@ -16,19 +16,25 @@ deriv <- function(x, d) {
 
 `deriv<-` <- function(x, value) {
   if (is.list(x) && length(x) == 1L) {
-    deriv(x[[1]]) <- value
+    deriv(x[[1L]]) <- value
     return (x)
   }
-  if (!is.list(value) && length(value) != length(x)) stop("There is an error in your deriv assignment (autograd)")
 
   if (is.list(value)) {
-    if (any(lapply(value, length) != length(x))) stop("There is an error in your deriv assignment (autog)")
+    if (any(lapply(value, length) != length(x))) stop("There is an error in your deriv assignment")
     attr(x, 'deriv') <- value
     attr(x, 'ddim') <- length(value)
   }
   else {
-    attr(x, 'deriv') <- list(value)
-    attr(x, 'ddim') <- 1L
+    ddim <- length(value) %/% length(x)
+    if (length(value) %% length(x)) stop("dimensions do not match")
+
+    value <- matrix(value, , ddim)
+    attr(x, 'deriv') <- lapply(seq_len(ddim), function(i) value[,i])
+    xdim <- dim(x)
+    if (!is.null(xdim)) for (d in 1:ddim) dim(attr(x, 'deriv')[[d]]) <- xdim
+
+    attr(x, 'ddim') <- ddim
   }
   class(x) <- 'autograd'
   x

@@ -10,15 +10,17 @@ deriv(x) <- value
 \arguments{
 \item{x}{Element}
 
-\item{value}{Value of derivative. Dimensions must match those of \code{x}}
-
+\item{value}{Value of derivative. Either a list, or a numeric whose length is a multiple of \code{length(x)}.}
 }
 \value{
 \code{deriv(x)}: The derivative of an autograd object (a list).
 
 \code{deriv(x)<-}: An object of class autograd
 }
-\details{These functions can be nested, e.g. \code{deriv(deriv(x)) <- value},
+\details{
+If \code{value} is a list, then all elements must have the same length as \code{x}.
+The \code{ddim} attribute is set as the length of \code{value} if this is a list and \code{length(value)/length(x)} otherwise.
+These functions can be nested, e.g. \code{deriv(deriv(x)) <- value},
 will assign \code{value} as the 2nd derivative of \code{x}.
 Use \link{hessian} for a print-friendly read of the 2nd derivative or \code{deriv(deriv(x)[[i]])} etc..
 }
