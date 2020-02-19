@@ -16,3 +16,10 @@ print.autograd <- function(x) {
   cat('\n')
 }
 
+print.deriv <- function(x) {
+  unlist(deriv(x))
+  ddim <- attr(x, 'ddim')
+  xdim <- if (is.array(x)) dim(x) else length(x)
+
+  drop(array(unlist(deriv(x)), dim = c(xdim, ddim)))
+}

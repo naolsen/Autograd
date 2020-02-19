@@ -19,13 +19,7 @@ prune.autograd <- function(x) {
 autograd.internal <- function(x, allow.list = FALSE) {
 
   if(!inherits(x, 'autograd')) {
-    if (allow.list) attr(x, 'deriv') <- list(x*0)
-    else attr(x, 'deriv') <- x*0
-    x
-  }
-  else if (!allow.list) {
-    if (attr(x, 'ddim') > 1) stop("Not implemented for this operator yet")
-    else attr(x, 'deriv') <- deriv(x)[[1]]
+    attr(x, 'deriv') <- list(x*0)
     x
   }
   else x
@@ -69,3 +63,4 @@ sqrt.autograd <- fun.to.autograd.deriv(sqrt, function(x) 1/(2*sqrt(x)))
 t.autograd <- rfun.to.autograd.deriv(t)
 rep.autograd <- rfun.to.autograd.deriv(rep)
 sum.autograd <- rfun.to.autograd.deriv(sum)
+mean.autograd <- rfun.to.autograd.deriv(mean)
