@@ -1,6 +1,7 @@
 \name{deriv}
 \alias{deriv}
 \alias{derivative}
+\alias{print.deriv}
 \title{Access/read derivative}
 \usage{
 deriv(x)
@@ -17,7 +18,7 @@ deriv(x) <- value
 \value{
 \code{deriv(x)}: The derivative of an autograd object (a list).
 
-\code{print.deriv(x)}: Pretty-formatted derivative.
+\code{print.deriv(x)}: Pretty-formatted derivative. Drops higher-order derivatives.
 
 \code{deriv(x)<-}: An object of class autograd
 }

@@ -1,9 +1,8 @@
 Package: Autograd
 Type: Package
 Title: Automatic gradients
-Version: 0.1.0
+Version: 0.9.0
 Author: Niels Olsen <nalo@dtu.dk>
 Description: Performs automatic differentation. Mix scalars, vectors, array etc. as usual. Does NOT contain any optimizer, and is not made for speed.
 License: GPL-3.0
 LazyData: TRUE
-RoxygenNote: 7.0.2
