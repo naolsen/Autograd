@@ -1,8 +1,10 @@
 Package: Autograd
 Type: Package
-Title: Automatic gradients
+Title: Automatic differentation in R
+Date: 2020-02-19
 Version: 0.9.0
 Author: Niels Olsen <nalo@dtu.dk>
-Description: Performs automatic differentation. Mix scalars, vectors, array etc. as usual. Does NOT contain any optimizer, and is not made for speed.
-License: GPL-3.0
+Maintainer: Niels Olsen <nalo@dtu.dk>
+Description: Performs automatic differentation. Mix scalars, vectors, array etc. as usual, and works on derivatives of any order. Does not contain an optimizer and is not made for speed.
+License: GPL-3
 LazyData: TRUE

@@ -97,3 +97,15 @@ solve.autograd <- function(a, b, ...) {
     x2
   }
 }
+
+## Note: the derivative is here an attribute to modulus
+determinant.autograd <- function(x, logarithm = TRUE, ...) {
+  if (! logarithm) stop("Only implemented for logarithm = TRUE")
+  dx <- deriv(x)
+  x <- prune.autograd(x)
+  x2inv <- solve(x, ...)
+  x2 <- determinant(x, TRUE, ...)
+
+  deriv(x2$modulus) <- lapply(dx, function(a) sum(diag(x2inv %*% a)))
+  x2
+}

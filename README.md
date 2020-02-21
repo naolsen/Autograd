@@ -10,9 +10,9 @@ Implemented as S3 methods. Works with derivatives of any order.
 Use ``deriv`` for reading/writing to derivative. Can be nested.
 
 Current functions/operators overloaded:
-`+`, `-`, `*`, `/`, `%*%`, `t`, `sqrt`, `log`, `exp`, `sin`, `cos`, `sum`, `mean`,
-`rep`, `solve`, `print`, 
-subsetting (only read) `[`. 
+`+`, `-`, `*`, `/`, `%*%`, `t`, `sqrt`, `log`, `exp`, `sum`, `mean`,
+`rep`, `solve`, `determinant`, `print`, 
+subsetting (only read) `[`, trigonometric and hyperbolic functions. 
 
 ### Known issues
 `solve` does not work as intended on `solve(a, b)`. Use `solve(a) %*% b` instead.

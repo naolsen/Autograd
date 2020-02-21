@@ -56,7 +56,11 @@ log.autograd <- fun.to.autograd.deriv(log, function(x) 1/x)
 exp.autograd <- fun.to.autograd.deriv(exp, exp)
 sin.autograd <- fun.to.autograd.deriv(sin, cos)
 cos.autograd <- fun.to.autograd.deriv(cos, function(x) -sin(x))
+tan.autograd <- fun.to.autograd.deriv(tan, function(x) 1 + tan(x)^2)
 sqrt.autograd <- fun.to.autograd.deriv(sqrt, function(x) 1/(2*sqrt(x)))
+sinh.autograd <- fun.to.autograd.deriv(sinh, cosh)
+cosh.autograd <- fun.to.autograd.deriv(cosh, sinh)
+tanh.autograd <- fun.to.autograd.deriv(tanh, function(x) 1 + tanh(x)^2)
 
 ## other functions
 `[.autograd` <- rfun.to.autograd.deriv(`[`)
