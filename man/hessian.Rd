@@ -1,6 +1,8 @@
 \name{hessian}
+\title{hessian}
 \alias{hessian}
-\title{Read/write to 2nd order derivative/hessian}
+\alias{hessian<-}
+\description{Read/write to 2nd order derivative/hessian}
 \usage{
 hessian(x)
 

@@ -1,8 +1,10 @@
 \name{deriv}
 \alias{deriv}
+\alias{deriv<-}
 \alias{derivative}
-\alias{print.deriv}
-\title{Access/read derivative}
+\alias{print_deriv}
+\title{Autograd derivative}
+\description{Access/read derivative}
 \usage{
 deriv(x)
 
