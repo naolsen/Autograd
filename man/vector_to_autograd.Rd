@@ -1,7 +1,7 @@
 \name{vector_to_autograd}
 \alias{vector.to.autograd}
-\alias{vector_to_autograd}
 \title{Assign "standard" derivative to vector}
+\description{Assign "standard" derivative to vector}
 \usage{
 vector.to.autograd(x, with.hessian = FALSE)
 }

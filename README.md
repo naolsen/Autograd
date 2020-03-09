@@ -102,7 +102,7 @@ Derivative: ddim = 2
 ## ww is too long to print here, so print value and deriv seperately:
 > as.numeric(ww)
 [1] 1 2 3 4
-> print.deriv(ww)
+> print_deriv(ww)
      [,1] [,2] [,3] [,4]
 [1,]    1    0    0    0
 [2,]    0    1    0    0
@@ -182,7 +182,7 @@ Derivative: ddim = 4
      [,1]
 [1,] 1692
 ## Let's get a better understanding of the derivatives:
-print.deriv(t(ww) %*% n %*% ww)
+print_deriv(t(ww) %*% n %*% ww)
 [1]  2200  5560  8920 12280
 > hessian(t(ww) %*% n %*% ww)
      [,1] [,2] [,3] [,4]
@@ -198,7 +198,7 @@ print.deriv(t(ww) %*% n %*% ww)
 > ww[1:4] <- c(0, 1, -2, 1)
 > as.numeric(t(ww) %*% n %*% ww)
 [1] 0
-> print.deriv(t(ww) %*% n %*% ww)
+> print_deriv(t(ww) %*% n %*% ww)
 [1] 0 0 0 0
 > hessian(t(ww) %*% n %*% ww)
      [,1] [,2] [,3] [,4]

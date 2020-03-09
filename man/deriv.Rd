@@ -8,7 +8,9 @@
 \usage{
 deriv(x)
 
-print.deriv(x)
+deriv(x, d)
+
+print_deriv(x)
 
 deriv(x) <- value
 }
@@ -16,11 +18,13 @@ deriv(x) <- value
 \item{x}{Element}
 
 \item{value}{Value of derivative. Either a list, or a numeric whose length is a multiple of \code{length(x)}.}
+
+\item{d}{Deriv index. (Optional)}
 }
 \value{
 \code{deriv(x)}: The derivative of an autograd object (a list).
 
-\code{print.deriv(x)}: Pretty-formatted derivative. Drops higher-order derivatives.
+\code{print_deriv(x)}: Pretty-formatted derivative. Drops higher-order derivatives.
 
 \code{deriv(x)<-}: An object of class autograd
 }

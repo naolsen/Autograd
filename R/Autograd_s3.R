@@ -1,7 +1,5 @@
 
 
-
-
 `+.autograd` <- function(e1, e2) {
   if (missing(e2)) {
     return(e1)
@@ -63,12 +61,12 @@
   x
 }
 
-`%*%` <- function(x,...) UseMethod("%*%", x)
+`%*%` <- function(x, y) UseMethod("%*%", x)
 `%*%.default` <- function(x,y)  {
   if(inherits(y, 'autograd')) {
     `%*%.autograd`(x,y)
   }
-  else  .Primitive("%*%")(x,y)
+  else  base::`%*%`(x,y)
 }
 
 `%*%.autograd` <- function (x,y) {

@@ -13,5 +13,5 @@ Prints \code{x}, along with derivative(s). If the number of derivative arguments
 Use \link{hessian} for a user-friendly 2nd derivative.
 }
 \seealso{
-\link{print.deriv} for pretty-print of derivative, which drops higher-order derivatives.
+\link{print_deriv} for pretty-print of derivative, which drops higher-order derivatives.
 }

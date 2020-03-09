@@ -41,7 +41,7 @@ deriv <- function(x, d) {
 }
 
 ## Returns the hessian in simplified form
-hessian <- function(x, simplify = TRUE) {
+hessian <- function(x) {
     ddim <- attr(x, 'ddim')
     xdim <- if (is.array(x)) dim(x) else length(x)
 
